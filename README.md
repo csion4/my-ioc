@@ -1,21 +1,17 @@
 # 基于一个玩具制作流程抽象出来的IOC容器
-## (手动置顶)6，总结
-一个很简单的Demo项目，代码量很少，很短时间把代码写完并完成调试的，所以还有很多不足的流程+bug；
-简单既是他的劣势又是他的优势，我特意将整个流程抽象出来很多不同的包和类出来，
-摒弃了Spring IOC流程中很多复杂的流程（比如多层继承+复杂的后置处理器扩展[(解析)](https://github.com/csion4/springFramework-analysis/blob/main/%E4%BB%8E%E5%90%8E%E7%BD%AE%E5%A4%84%E7%90%86%E5%99%A8%E7%9C%8B%E5%90%AF%E5%8A%A8.md)+三级缓存和AOP）回归IOC容器本质，可以让我们直观的了解啥是
-对象容器，啥是IOC（DI）以及他们的简单实现，让我们在看到Spring源码时不至于那么恐慌和排斥；   
+# 躺赢 or Carry?
 
-## 1，前言
+# 1，前言
 IOC容器并没有你想象的那么复杂，关键思想也就是那个被面试官问烂了的话题：控制反转依赖注入；
 但是如果看了Spring源码的童鞋就会被那些大佬们写的迷宫绕的走不出来，只能苦苦背诵那些概念以为了可以和面试官聊两句（[Spring启动源码解析可参看](https://github.com/csion4/xml_spring-context-5.3.5-sources)）；
 我承认Spring IOC代码设计性和扩展性很高，但是个人感觉他功能实现的过多并且太侧重于高扩展了，也可能是多个版本迭代和多模式
 （从单纯的xml到如今全注解）支持使得它整个流程太过于复杂；他厉害的地方也是这点，能将如此庞大的功能集包装成一个黑盒并且提供最简单
 的两行代码new ApplicationContext().getBean(xxx);这也就是Spring的魅力吧；
 
-## 2，简介
+# 2，简介
 这个小Demo则是从一个名叫Csion的大叔制作玩具的过程抽象出来的一个IOC容器，他或许可以让你能从另外一个角度看IOC，让我们一起经入Csion大叔的世界吧；
 
-## 3，故事开始
+# 3，故事开始
 我们今天的主角是一个叫Csion的大叔，他是一个富二代，最近继承了他家的祖业--一家玩具工厂，据他说规模超越了Lego了；
 他的家族提供根据玩具名称或类型定制玩具的能力（Uncle.class）；来让我们看看整个流程吧：
 1. 首先我们如果要定制玩具，需要提供蓝图（bluePrint）；
@@ -27,7 +23,7 @@ IOC容器并没有你想象的那么复杂，关键思想也就是那个被面�
 7. 生产完成，等待别人来根据玩具名称或者玩具类型获取玩具吧（坐等数钱）
 怎么样，资本家赚钱有时候就是这么简单；
 
-## 4，抽象分析
+# 4，抽象分析
 结合Spring IOC进行抽象分析：
 1. 我们这里的Uncle对应的是Spring IOC中的ApplicationContext;
 2. justDoIt()方法对应refresh()方法
@@ -48,7 +44,7 @@ IOC容器并没有你想象的那么复杂，关键思想也就是那个被面�
     public interface ApplicationContext extends EnvironmentCapable, ListableBeanFactory, HierarchicalBeanFactory,
     		MessageSource, ApplicationEventPublisher, ResourcePatternResolver {}
 
-## 5，说了这么多，我们应该如何体验一下富二代Csion Uncle的乐趣呢？
+# 5，说了这么多，我们应该如何体验一下富二代Csion Uncle的乐趣呢？
 1. 获取这个demo源码后编译打包后install到本地maven仓库
 2. 创建一个测试maven项目，引入依赖
 
@@ -108,12 +104,12 @@ IOC容器并没有你想象的那么复杂，关键思想也就是那个被面�
             }
         }
 
-## 6，总结
+# 6，总结
 一个很简单的Demo项目，代码量很少，很短时间把代码写完并完成调试的，所以还有很多不足的流程+bug；
 简单既是他的劣势又是他的优势，我特意将整个流程抽象出来很多不同的包和类出来，
 摒弃了Spring IOC流程中很多复杂的流程（比如多层继承+复杂的后置处理器扩展[(解析)](https://github.com/csion4/springFramework-analysis/blob/main/%E4%BB%8E%E5%90%8E%E7%BD%AE%E5%A4%84%E7%90%86%E5%99%A8%E7%9C%8B%E5%90%AF%E5%8A%A8.md)+三级缓存和AOP）回归IOC容器本质，可以让我们直观的了解啥是
 对象容器，啥是IOC（DI）以及他们的简单实现，让我们在看到Spring源码时不至于那么恐慌和排斥； 
 
-## for me：
+# for me：
 第一：实现一个ioc容器
 第二：提升抽象能力
